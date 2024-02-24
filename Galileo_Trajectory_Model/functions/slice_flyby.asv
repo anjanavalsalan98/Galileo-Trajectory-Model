@@ -1,0 +1,14 @@
+function [states_ca] = slice_flyby(states_fb, etvec_fb, et_ca)
+    et_min = etvec_fb(1);
+    index = 1;
+
+    for i = 1:length(etvec_fb)
+        et_diff = etvec_fb(i) - et_ca;
+        if et_diff < et_min
+            et_min = et_diff;
+            index = i;
+        end
+    end
+    states_ca = states
+end
+
