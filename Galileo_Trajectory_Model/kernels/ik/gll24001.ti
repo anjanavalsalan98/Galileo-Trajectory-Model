@@ -1,0 +1,230 @@
+\beginlabel
+PDS_VERSION_ID               = "PDS3"
+RECORD_TYPE                  = "FIXED_LENGTH"                            
+RECORD_BYTES                 = "N/A"
+^SPICE_KERNEL                = "GLL24001.TI"                            
+MISSION_NAME                 = "GALILEO"                                 
+SPACECRAFT_NAME              = "GALILEO_ORBITER"                         
+DATA_SET_ID                  = "GO-J-SPICE-6-IKV1.0"                    
+KERNEL_TYPE_ID               = "IK"                                     
+PRODUCT_ID                   = "GLL24001.TI"                             
+ORIGINAL_FILE_NAME           = "GLL24001.TI"                              
+PRODUCT_CREATION_TIME        = 1992-09-02T12:00:00.00                
+PRODUCER_ID                  = "PDS_NAIF"                               
+MISSION_PHASE_NAME           = "N/A"           
+PRODUCT_VERSION_TYPE         = "ARCHIVE"                                  
+PLATFORM_OR_MOUNTING_NAME    = "MAG_BOOM"                                     
+UPLOAD_ID                    = "N/A"                                     
+START_TIME                   = "N/A"                 
+STOP_TIME                    = "N/A"                 
+SPACECRAFT_CLOCK_START_COUNT = "N/A"                                      
+SPACECRAFT_CLOCK_STOP_COUNT  = "N/A"                                    
+TARGET_NAME                  = "N/A"          
+INSTRUMENT_NAME              = "EXTREME ULTRAVIOLET SPECTROMETER"                                     
+INSTRUMENT_ID                = "EUV"                                     
+SOURCE_PRODUCT_ID            = "N/A"                                                                                                                                     
+NOTE                         = "N/A"                                       
+OBJECT                       = "SPICE_KERNEL"                            
+INTERCHANGE_FORMAT           = "ASCII"                                    
+KERNEL_TYPE                  = "INSTRUMENT"                               
+DESCRIPTION                  = "N/A"            
+END_OBJECT                   = "SPICE_KERNEL"                            
+END
+\endlabel
+
+     DATA_OBJECT_TYPE = SPICE_I-KERNEL
+ 
+     MISSION_ID = 1
+ 
+     SPACECRAFT_NAME = GALILEO
+ 
+     SPACECRAFT_NUMBER = 77
+ 
+     INSTRUMENT_ID = 24
+ 
+     PROCESS_TIME = 1992-09-02T12:00:00
+ 
+ 
+EUV I-KERNEL
+===========================================================================
+ 
+     This I-kernel contains EUV instrument data for Earth 2. The purpose of
+     the EUV data contained in this file is to describe the geometric
+     relationship between the EUV Field-of-View (FOV) (slit width and
+     length coordinates) and the coordinate system of the GLL spacecraft
+     structure on which the EUV instrument is mounted (rotor x-y-z
+     coordinates).
+ 
+ 
+References
+--------------------------------------------------------
+ 
+         1.   Galileo EUV Functional Requirement Document GLL-625-205,
+              4-2024, Ammendment 1.
+ 
+         2.   "EUV Data System Functional Specification" by Neil White
+              and Fred O'Neil, Rev E, dated November 3, 1989.
+ 
+         3.   UVS/EUV instrument paper, "Galileo Ultraviolet Spectrometer
+              Experiment", Space Science Review, 60: 503-530, 1992. 
+              by Charles W. Hord, et al.
+ 
+         4.   KERNEL ``Required Reading'' file.
+ 
+         5.   Planetary Data System Document D-6184, Data Dictionary
+              Document, 16 February, 1990, Version 2.0
+ 
+ 
+Implementation notes
+--------------------------------------------------------
+ 
+     This file is used by the SPICE system as follows: programs that make
+     use of the I-kernel must `load' the kernel, normally during program
+     initialization. Loading the kernel associates data items with their
+     names in a data structure called the `kernel pool'. The SPICELIB
+     routine LDPOOL loads a kernel file into the pool as shown below.
+ 
+                  CALL LDPOOL ( 'GLL24001.TI' )
+ 
+     In order for a program or subroutine to extract data from the pool,
+     the SPICELIB routine RTPOOL is used. See [4] for more details.
+ 
+ 
+Naming Conventions
+--------------------------------------------------------
+ 
+     All names referencing values in this I kernel start with the
+     characters `INS' followed by the NAIF UVS instrument number ('-77'
+     followed by the instrument subsystem reference number). This naming
+     scheme is standard for all I-kernel files and was instituted to
+     distinguish I-kernel data from other types of data that may also be
+     loaded in the kernel pool.
+ 
+     The remainder of the name is an underscore character, followed by the
+     unique name of the data item. For example, the EUV FOV width is 
+     specified by
+ 
+         INS-77024_FOV_WIDTH
+ 
+     The upper bound on the length of the name of any data item is 32
+     characters.
+ 
+     If the same item is included in more then one file, or if the same
+     item appears more than once within a single file, the latest value
+     supersedes any earlier values.
+ 
+ 
+Definition of the EUV coordinate system
+--------------------------------------------------------
+ 
+     The following discussion is from [2].
+ 
+        
+                                   +-------- +    -
+                                   |         |    ^
+                                   |<--0.17->|    .
+                                   |         |   0.87 degrees
+                                   |         |    .  
+                                   |         |    .
+                                   |         |    .
+                                   |         |    .       
+                                   |         |    .       
+                                   |         |    .      
+                                   |         |    .
+                                   |         |    . 
+                                   |         |    .       
+                                   |    o    |    .       
+                                   |         |    .       
+                                   |         |    .       
+                                   |         |    .      
+                                   |         |    .     
+                                   |         |    .
+                                   |         |    .
+                                   |         |    .
+                                   |         |    .
+                                   |         |    .
+                                   |         |    .
+                                   |         |    .
+                                   |         |    v
+                                   +-------- +    -
+
+
+        In data analysis programs, the EUV field of view is defined by five
+        vectors. These vectors consist of the boresight vector and a vector
+        for each corner of the field of view. The corner vectors are 
+        referenced by a number. The numbering for the corners is defined in
+        the below Diagram. 
+
+        
+                           4 ----> +---------+  <---- 1 
+                                   |         |
+                                   |         |
+                                   |         |
+                                   |         |
+                                   |         |
+                                   |         |
+                                   |    X  <-|--- Boresight
+                                   |         |
+                                   |         |
+                                   |         |
+                                   |         |
+                                   |         |
+                                   |         |
+                          3 ---->  +---------+  <---- 2 
+
+
+        \section DATA
+ 
+        \literal
+ 
+        Field of View dimensions (units are DEGREES):
+
+        \begintext
+
+        The boresight vector for the EUV are given with respect to the 
+        spacecraft rotor Xr, Yr, and Zr axis.
+ 
+        \begindata
+ 
+        INS-77024_BORESIGHT          = ( -0.7071, 0.7071, 0.0 )
+
+        \begintext
+
+        The UVS field of view dimensions are given as a length and width
+
+        \begindata
+ 
+        INS-77024_FOV_WIDTH          = (   0.17 )
+        INS-77024_FOV_LENGTH         = (   0.87 )
+ 
+        \begintext
+ 
+        Date on which the above data was entered into this I-kernel:
+ 
+        \begindata
+ 
+        INS-77024_DATA_ENTRY_DATE    = ( @04-SEPT-1992 )
+ 
+        \begintext
+ 
+        Version
+ 
+        The version number is always positive and given in the form V.X.
+        V and X are incremented by following these rules:
+ 
+          --  V is incremented by 1 when there is a structural change to an
+              I-kernel.  A structural change to an instrument kernel would
+              be adding or deleting data items or changing the number of
+              values associated with an existing data item.  A structural
+              change would also be assigning different units to values or
+              changing the name of a data item.
+ 
+          --  X is incremented by 1 only if pre-existing values are
+              changed.
+ 
+        \begindata
+ 
+        INS-77024_VERSION  =  ( 1.0 )
+ 
+ 
+

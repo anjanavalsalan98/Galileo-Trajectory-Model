@@ -1,0 +1,205 @@
+     DATA_OBJECT_TYPE = SPICE_I-KERNEL
+ 
+     MISSION_ID = 1
+ 
+     SPACECRAFT_NAME = GALILEO
+ 
+     SPACECRAFT_NUMBER = 77
+ 
+     INSTRUMENT_ID = 34
+ 
+     PROCESS_TIME = 1990-11-12T12:00:00
+ 
+ 
+UVS I-KERNEL
+===========================================================================
+ 
+     This I-kernel contains UVS instrument data for Earth 1. The purpose of
+     the UVS data contained in this file is to describe the geometric
+     relationship between the UVS Field-of-View (FOV) (slit width and
+     length coordinates) and the coordinate system of the GLL spacecraft
+     structure on which the UVS instrument is mounted (scan platform x-y-z
+     coordinates).
+ 
+ 
+References
+--------------------------------------------------------
+ 
+         1.   Galileo UVS Functional Requirement Document GLL-625-205,
+              4-2034, Rev A.
+ 
+         2.   "Galileo UVS Calibration Report, Preliminary Version" by
+              William McClintock, dated March, 1989.
+ 
+         3.   UVS/EUV instrument paper, Draft version, 14 June, 1990. by
+              Charles W. Hord, et al.
+ 
+         4.   KERNEL ``Required Reading'' file.
+ 
+         5.   Planetary Data System Document D-6184, Data Dictionary
+              Document, 16 February, 1990, Version 2.0
+ 
+ 
+Implementation notes
+--------------------------------------------------------
+ 
+     This file is used by the SPICE system as follows: programs that make
+     use of the I-kernel must `load' the kernel, normally during program
+     initialization. Loading the kernel associates data items with their
+     names in a data structure called the `kernel pool'. The SPICELIB
+     routine LDPOOL loads a kernel file into the pool as shown below.
+ 
+                  CALL LDPOOL ( 'GLL34001.TI' )
+ 
+     In order for a program or subroutine to extract data from the pool,
+     the SPICELIB routine RTPOOL is used. See [4] for more details.
+ 
+ 
+Naming Conventions
+--------------------------------------------------------
+ 
+     All names referencing values in this I kernel start with the
+     characters `INS' followed by the NAIF UVS instrument number ('-77'
+     followed by the instrument subsystem reference number). This naming
+     scheme is standard for all I-kernel files and was instituted to
+     distinguish I-kernel data from other types of data that may also be
+     loaded in the kernel pool.
+ 
+     The remainder of the name is an underscore character, followed by the
+     unique name of the data item. For example, the UVS FOV width for the
+     F-channel detector is specified by
+ 
+         INS-77034_FOV_WIDTH_F
+ 
+     The upper bound on the length of the name of any data item is 32
+     characters.
+ 
+     If the same item is included in more then one file, or if the same
+     item appears more than once within a single file, the latest value
+     supersedes any earlier values.
+ 
+ 
+Definition of the UVS coordinate system
+--------------------------------------------------------
+ 
+     The following discussion is from [2].
+ 
+ 
+        The mounting feet of the UVS have been carefully machined in
+        order to insure its optical alignment relative to the SSI.
+        Alignment was determined by placing the UVS on the optic axis
+        of a laboratory collimator and autocollimating each mounting
+        surface with a test flat. ...In addition to the boresight test
+        a plane miror has also been aligned to the UVS optic axis and
+        can be periodically installed on the instrument to check its
+        alignment to other scan platform instruments.
+ 
+        The mounting orientation relative to the Galileo SSI is shown
+        below.
+ 
+ 
+                                   |-------- |   -
+                                   |         |   ^
+                                   |<--0.1-->|   .
+                                   |         |  1.4 degrees
+                                   |         |   .  N and G-channel FOVs
+                                   |         |   .
+                                   |         |
+           SSI line 1, sample 1    |         |    SSI line 1, sample 800
+                       ------------|---------|-------------
+                       |           |         |            |
+                       |           |-------- | -          |
+                       |           |         | ^          |
+                       |           |         | .          |
+                       |           |         | .          |
+                       |           |         |0.4 degree  |
+                       |           |         | .  F-channel FOV
+             o is SSI  |           |         | .          |
+              (400,400)|           |    o    | .          |
+              along -Z |           |         | .          |
+               into the|           |         | .          |
+                 page  |           |         | .          |
+             o = UVS   |           |         | .          |
+            FOV center |           |         | .          |
+                       |           |<--0.1-->| .          |
+                       |           |         | v          |
+                       |           |---------| -          |
+                       ------------|---------|-------------
+           SSI line 800, sample 1  |         |    SSI line 800, sample 800
+                                   |         |
+                                   |         |
+                                   |         |
+                                   |         |    .
+                                   |         |    .
+                                   |         |    v
+                                   |-------- |    -
+ 
+ 
+        \section DATA
+ 
+        \literal
+ 
+        Field of View dimensions (units are DEGREES):
+ 
+        \begindata
+ 
+        INS-77034_FOV_WIDTH_F        = (   0.1 )
+        INS-77034_FOV_LENGTH_F       = (   0.4 )
+ 
+        INS-77034_FOV_WIDTH_N        = (   0.1 )
+        INS-77034_FOV_LENGTH_N       = (   1.4 )
+ 
+        INS-77034_FOV_WIDTH_G        = (   0.1 )
+        INS-77034_FOV_LENGTH_G       = (   1.4 )
+ 
+        INS-77034_LIMB_SENSOR_DIA    = (   3.0 )
+ 
+        \begintext
+ 
+        Field of view center location (notice that this item is a vector)
+        (units are in SSI [line,sample] coordinates):
+ 
+        \begindata
+ 
+        INS-77034_FOV_CENTER         = ( 400.0   400.0 )
+        INS-77034_LIMB_SENSOR_CEN    = ( 400.0   400.0 )
+ 
+        \begintext
+ 
+        Mounting alignment offset (units are DEGREES):
+        Twist is as defined by SSI
+ 
+        \begindata
+ 
+        INS-77034_TWIST_OFFSET      = ( 0.0 )
+ 
+        \begintext
+ 
+        Date on which the above data was entered into this I-kernel:
+ 
+        \begindata
+ 
+        INS-77034_DATA_ENTRY_DATE    = ( @12-NOV-1990 )
+ 
+        \begintext
+ 
+        Version
+ 
+        The version number is always positive and given in the form V.X.
+        V and X are incremented by following these rules:
+ 
+          --  V is incremented by 1 when there is a structural change to an
+              I-kernel.  A structural change to an instrument kernel would
+              be adding or deleting data items or changing the number of
+              values associated with an existing data item.  A structural
+              change would also be assigning different units to values or
+              changing the name of a data item.
+ 
+          --  X is incremented by 1 only if pre-existing values are
+              changed.
+ 
+        \begindata
+ 
+        INS-77034_VERSION  =  ( 1.0 )
+ 
+ 

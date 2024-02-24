@@ -1,0 +1,132 @@
+     DATA_OBJECT_TYPE = SPICE_I-KERNEL
+ 
+     MISSION_ID = 1
+ 
+     SPACECRAFT_NAME = GALILEO
+ 
+     SPACECRAFT_NUMBER = 77
+ 
+     INSTRUMENT_ID = 24
+ 
+     PROCESS_TIME = 1990-11-12T12:00:00
+ 
+ 
+DDS I-KERNEL
+===========================================================================
+ 
+     This I-kernel contains instrument data for the Dust Detector Subsystem
+     (DDS) instrument on board the Galileo Orbiter.
+ 
+ 
+References
+--------------------------------------------------------
+ 
+         1.   ``Preliminary I-kernel Specification,'' (NAIF document number
+              177.0), by Ian Underwood, 1/19/90.
+ 
+         2.   KERNEL ``Required Reading'' file.
+ 
+         3.   ``Galileo Orbiter Flight Equipment: Configuration'' in
+              GALILEO FUNCTIONAL REQUIREMENTS BOOK, JPL Document
+              GLL-3-180C, 28 APR 1989.
+ 
+ 
+Implementation Notes
+--------------------------------------------------------
+ 
+     This file is used by the SPICE system as follows: programs that make
+     use of the I-kernel must `load' the kernel, normally during program
+     initialization. Loading the kernel associates data items with their
+     names in a data structure called the `kernel pool'. The SPICELIB
+     routine LDPOOL loads a kernel file into the pool as shown below.
+ 
+                  CALL LDPOOL ( 'GLL29001.TI' )
+ 
+     In order for a program or subroutine to extract data from the pool,
+     the SPICELIB routine RTPOOL is used. See [2] for more details.
+ 
+ 
+Naming Conventions
+--------------------------------------------------------
+ 
+     All names referencing values in this I kernel start with the
+     characters `INS' followed by the NAIF DDS instrument number ('-77'
+     followed by the instrument subsystem reference number). This naming
+     scheme is standard for all I-kernel files and was instituted to
+     distinguish I-kernel data from other types of data that may also be
+     loaded in the kernel pool.
+ 
+     The remainder of the name is an underscore character, followed by the
+     unique name of the data item. For example, the DDS boresight vector is
+     specified by
+ 
+                INS-77029_BORESIGHT
+ 
+     The upper bound on the length of the name of any data item is 32
+     characters.
+ 
+     If the same item is included in more then one file, or if the same
+     item appears more than once within a single file, the latest value
+     supersedes any earlier values.
+ 
+ 
+DATA
+--------------------------------------------------------
+ 
+ 
+        INS-77029_BORESIGHT is a unit vector parallel to the DDS boresight
+        vector.  This vector is expressed relative to the spacecraft Xr, Yr
+        and Zr axes.
+ 
+        \begindata
+ 
+        INS-77029_BORESIGHT       = ( 0.000, 0.866, -0.500 )
+ 
+        \begintext
+ 
+        The DDS focal point is given at a position relative to the
+        spacecraft Xr, Yr, and Zr axes in millimeters.
+ 
+        \begindata
+ 
+        INS-77029_FOCAL_POINT_POS = ( 0.00, 2189.23, -432.56 )
+ 
+        \begintext
+ 
+        The DDS has a maximum acceptance angle.  This angle is given in
+        degrees off boresight axis.
+ 
+        \begindata
+ 
+        INS-77029_MAX_ACCEP_ANG   = ( 70.0 )
+ 
+        \begintext
+ 
+        Date on which the above data was entered into this I-kernel.
+ 
+        \begindata
+ 
+        INS-77029_DATA_ENTRY_DATE = ( @29-OCT-1990 )
+ 
+        \begintext
+ 
+        Version
+ 
+        The version number is always positive and given in the form V.X.
+        V and X are incremented by following these rules:
+ 
+          --  V is incremented by 1 when there is a structural change to an
+              I-kernel.  A structural change to an instrument kernel would
+              be adding or deleting data items or changing the number of
+              values associated with an existing data item.  A structural
+              change would also be assigning different units to values or
+              changing the name of a data item.
+ 
+          --  X is incremented by 1 only if pre-existing values are
+              changed.
+ 
+        \begindata
+ 
+        INS-77029_VERSION         = ( 1.0 )
+ 
+ 

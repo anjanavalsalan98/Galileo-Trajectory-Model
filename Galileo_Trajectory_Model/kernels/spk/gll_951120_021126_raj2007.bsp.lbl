@@ -1,0 +1,365 @@
+Galileo Spacecraft Trajectory SPK file, Robert Jacobson's 2007 Solution
+===========================================================================
+
+     Created by Boris Semenov, NAIF/JPL, September 8, 2011.
+
+
+Objects in the Ephemeris
+--------------------------------------------------------
+
+     This file contains trajectory data for the Galileo spacecraft
+     (NAIF ID -77) with respect to the Jupiter Barycenter (5) in the
+     J2000 inertial reference frame.
+
+     It also contains ephemerides of the Sun (10), planetary
+     barycenters (1-9), Mercury (199), Venus (299), Earth (399), Moon
+     (301), Mars (499), and Jupiter (599) and of a few Jovian
+     satellites -- Io (501), Europa (502), Ganymede (503), Callisto
+     (504), Amalthea (505), and Thebe (514).
+
+     The planetary ephemerides included in this SPK are version DE405;
+     the satellite ephemerides included in this file are version
+     JUP230.
+
+
+Approximate Time Coverage
+--------------------------------------------------------
+
+     The Galileo trajectory stored in this SPK file provides nearly
+     continuous coverage for the primary mission (1995-JUL-01 ...
+     1998-JAN-01) and partial coverage with many large gaps for
+     extended missions (1998-JAN-01...2003-SEP-22), specifically:
+
+        Start of Interval (ET)              End of Interval (ET)
+        -----------------------------       -----------------------------
+        1995 NOV 21 00:00:00.000            1995 DEC 08 00:00:00.000
+        1995 DEC 08 06:30:00.000            1997 JAN 15 00:00:00.000
+        1997 JAN 16 00:00:00.000            1998 JAN 23 00:00:00.000
+        1998 MAR 14 00:01:03.185            1998 MAY 01 00:00:00.000
+        1998 JUN 27 00:01:03.184            1998 AUG 24 00:00:00.000
+        1999 JAN 01 00:00:00.000            1999 MAR 15 00:00:00.000
+        1999 APR 11 00:00:00.000            1999 JUL 23 00:00:00.000
+        1999 AUG 03 00:00:00.000            1999 AUG 27 00:00:00.000
+        1999 AUG 28 14:00:00.000            1999 SEP 30 00:00:00.000
+        1999 OCT 01 15:00:00.000            1999 NOV 02 00:00:00.000
+        1999 NOV 11 02:00:00.000            1999 DEC 14 00:00:00.000
+        1999 DEC 23 00:00:00.000            2000 JAN 24 18:00:00.000
+        2000 FEB 06 06:00:00.000            2000 MAR 10 00:00:00.000
+        2000 APR 07 13:10:00.000            2000 MAY 30 00:00:00.000
+        2000 OCT 31 08:00:00.000            2001 JAN 04 00:00:00.000
+        2001 APR 29 00:00:00.000            2001 JUL 16 00:00:00.000
+        2001 JUL 16 12:30:00.000            2001 OCT 25 00:00:00.000
+        2001 DEC 04 00:00:00.000            2002 NOV 26 08:00:00.000
+
+     The planetary and satellite ephemerides provided in this SPK file
+     covers the following continuous time interval:
+
+        Start of Interval (ET)              End of Interval (ET)
+        -----------------------------       -----------------------------
+        1995 NOV 21 00:00:00.000            2002 NOV 26 08:00:00.000
+
+
+Status
+--------------------------------------------------------
+
+     This file contains reconstructed Galileo trajectory determined by
+     Robert A. Jacobson, Solar System Dynamics group, in 2007. It is
+     intended for use in support of the Galileo experiment data
+     processing and for archiving with the Planetary Data System (PDS).
+
+
+Pedigree
+--------------------------------------------------------
+
+     This file was created by Boris Semenov using individual trajectory
+     arc solutions for the primary and extended mission trajectory arcs
+     provided in the form of NIO files by Robert A. Jacobson in 2007.
+     These NIO files were converted to SPK format using the NIOSPK
+     program and then merged together with DE405/LE405 planetary
+     ephemerides and JUP230 satellite ephemerides using the SPKMERGE
+     program. The SPKMERGE log is provided in the Appendix 1 of these
+     comments.
+
+
+Segment Boundary Discontinuities
+--------------------------------------------------------
+
+     This SPK file contains a large number of Galileo trajectory SPK
+     segments that came from original individual SPK files. Although,
+     each segment provides continuous trajectory within the interval
+     that it covers, in general a position and velocity discontinuity
+     exists at the boundary of the segment and the segments whose
+     coverage immediately precede and follow it. The times and
+     magnitudes of these discontinuities are provided in the Appendix 2
+     of these comments.
+
+
+Contacts
+--------------------------------------------------------
+
+     If you have questions regarding this data contact
+
+        Boris V. Semenov
+        (818)-354-8136,
+        Boris.Semenov@jpl.nasa.gov
+
+
+Appendix 1: SPKMERGE Log
+--------------------------------------------------------
+
+     The log from the SPKMERGE run that created this SPK is below.
+
+        ; gll_951120_021126_raj2007.bsp LOG FILE
+
+        ; Created 2011-09-08/10:35:09.15.
+        ;
+        ; BEGIN SPKMERGE COMMANDS
+
+        LEAPSECONDS_KERNEL   = naif0008.tls
+
+        SPK_KERNEL           = gll_951120_021126_raj2007.bsp
+          LOG_FILE           = gll_951120_021126_raj2007.log
+          SOURCE_SPK_KERNEL  = gll.-1.Io.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 1995 NOV 20 23:58:58.817
+            END_TIME         = 1995 DEC 07 23:58:58.817
+          SOURCE_SPK_KERNEL  = gll.00.Ganymede0.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 1995 DEC 08 06:28:58.817
+            END_TIME         = 1996 MAY 31 23:58:57.815
+          SOURCE_SPK_KERNEL  = gll.01.Ganymede1.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 1996 MAY 31 23:58:57.815
+            END_TIME         = 1996 AUG 05 23:58:57.817
+          SOURCE_SPK_KERNEL  = gll.02.Ganymede2.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 1996 AUG 05 23:58:57.817
+            END_TIME         = 1996 SEP 10 23:58:57.818
+          SOURCE_SPK_KERNEL  = gll.03.Callisto3.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 1996 SEP 10 23:58:57.818
+            END_TIME         = 1996 NOV 26 23:58:57.817
+          SOURCE_SPK_KERNEL  = gll.04.Europa4.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 1996 NOV 26 23:58:57.817
+            END_TIME         = 1997 JAN 14 23:58:57.816
+          SOURCE_SPK_KERNEL  = gll.06.Europa6.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 1997 JAN 15 23:58:57.816
+            END_TIME         = 1997 MAR 14 23:58:57.814
+          SOURCE_SPK_KERNEL  = gll.07.Ganymede7.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 1997 MAR 14 23:58:57.814
+            END_TIME         = 1997 APR 21 23:58:57.814
+          SOURCE_SPK_KERNEL  = gll.08.Ganymede8.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 1997 APR 21 23:58:57.814
+            END_TIME         = 1997 JUN 03 23:58:57.815
+          SOURCE_SPK_KERNEL  = gll.09.Callisto9.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 1997 JUN 03 23:58:57.815
+            END_TIME         = 1997 AUG 08 23:58:56.817
+          SOURCE_SPK_KERNEL  = gll.10.Callisto10.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 1997 AUG 08 23:58:56.817
+            END_TIME         = 1997 OCT 19 23:58:56.818
+          SOURCE_SPK_KERNEL  = gll.11.Europa11.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 1997 OCT 19 23:58:56.818
+            END_TIME         = 1997 NOV 09 23:58:56.817
+          SOURCE_SPK_KERNEL  = gll.12.Europa12.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 1997 NOV 09 23:58:56.817
+            END_TIME         = 1998 JAN 22 23:58:56.815
+          SOURCE_SPK_KERNEL  = gll.14.Europa14.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 1998 MAR 14 00:00:00.000
+            END_TIME         = 1998 APR 30 23:58:56.815
+          SOURCE_SPK_KERNEL  = gll.16.Europa16.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 1998 JUN 27 00:00:00.000
+            END_TIME         = 1998 AUG 23 23:58:56.817
+          SOURCE_SPK_KERNEL  = gll.19.Europa19.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 1998 DEC 31 23:58:56.816
+            END_TIME         = 1999 MAR 14 23:58:55.814
+          SOURCE_SPK_KERNEL  = gll.20.Callisto20.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 1999 APR 10 23:58:55.814
+            END_TIME         = 1999 JUN 04 23:58:55.815
+          SOURCE_SPK_KERNEL  = gll.21.Callisto21.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 1999 JUN 04 23:58:55.815
+            END_TIME         = 1999 JUL 22 23:58:55.816
+          SOURCE_SPK_KERNEL  = gll.22.Callisto22.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 1999 AUG 02 23:58:55.817
+            END_TIME         = 1999 AUG 26 23:58:55.817
+          SOURCE_SPK_KERNEL  = gll.23.Callisto23.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 1999 AUG 28 13:58:55.817
+            END_TIME         = 1999 SEP 29 23:58:55.818
+          SOURCE_SPK_KERNEL  = gll.24.Io24.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 1999 OCT 01 14:58:55.818
+            END_TIME         = 1999 NOV 01 23:58:55.817
+          SOURCE_SPK_KERNEL  = gll.25.Io25.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 1999 NOV 11 01:58:55.817
+            END_TIME         = 1999 DEC 13 23:58:55.817
+          SOURCE_SPK_KERNEL  = gll.26.Europa26.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 1999 DEC 22 23:58:55.816
+            END_TIME         = 2000 JAN 24 17:58:55.815
+          SOURCE_SPK_KERNEL  = gll.27.Io27.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 2000 FEB 06 05:58:55.815
+            END_TIME         = 2000 MAR 09 23:58:55.814
+          SOURCE_SPK_KERNEL  = gll.28.Ganymede28.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 2000 APR 07 13:08:55.814
+            END_TIME         = 2000 MAY 29 23:58:55.815
+          SOURCE_SPK_KERNEL  = gll.29.Ganymede29.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 2000 OCT 31 07:58:55.817
+            END_TIME         = 2001 JAN 03 23:58:55.816
+          SOURCE_SPK_KERNEL  = gll.30.Callisto30.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 2001 APR 28 23:58:55.814
+            END_TIME         = 2001 JUL 15 23:58:55.816
+          SOURCE_SPK_KERNEL  = gll.31.Io31.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 2001 JUL 16 12:28:55.816
+            END_TIME         = 2001 AUG 27 23:58:55.817
+          SOURCE_SPK_KERNEL  = gll.32.Io32.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 2001 AUG 27 23:58:55.817
+            END_TIME         = 2001 OCT 24 23:58:55.818
+          SOURCE_SPK_KERNEL  = gll.33.Io33.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 2001 DEC 03 23:58:55.817
+            END_TIME         = 2002 JAN 22 23:58:55.815
+          SOURCE_SPK_KERNEL  = gll.34.Amalthea34.jup230.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = -77
+            BEGIN_TIME       = 2002 JAN 22 23:58:55.815
+            END_TIME         = 2002 NOV 26 07:58:55.817
+          SOURCE_SPK_KERNEL  = jup230_planets.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = 499, 299, 199, 399, 301, 10, 9, 8, 7,
+                               6, 5, 4, 3, 2, 1
+            BEGIN_TIME       = 1995 NOV 20 23:58:58.817
+            END_TIME         = 2002 NOV 26 07:58:55.817
+          SOURCE_SPK_KERNEL  = jup230_satellites.bsp
+            INCLUDE_COMMENTS = NO
+            BODIES           = 599, 514, 505, 504, 503, 502, 501
+            BEGIN_TIME       = 1995 NOV 20 23:58:58.817
+            END_TIME         = 2002 NOV 26 07:58:55.817
+
+        ; END SPKMERGE COMMANDS
+
+
+Appendix 2: Segment Boundary Discontinuity Summary
+--------------------------------------------------------
+
+     This SPK file contains a large number of Galileo trajectory SPK
+     segments that came from original individual SPK files. Although,
+     each segment provides continuous trajectory within the interval
+     that it covers, in general a position and velocity discontinuity
+     exists at the boundary of the segment and the segments whose
+     coverage immediately precede and follow it. The times and
+     magnitudes of these discontinuities are provided in the table
+     included in this Appendix.
+
+     The top portion of the table contains the name of this SPK file.
+     All descriptive lines in the top portion of the file start with
+     the ``#'' character to allow direct plotting of the data in the
+     freeware ``gnuplot'' application.
+
+     The table consists of 4 columns. The first column contains the UTC
+     time of that segment boundary. The last three columns (2..4)
+     contain view coordinate frame components -- ``down track'' (this
+     direction is parallel to the velocity vector), ``normal to plane''
+     (this direction is computed as cross product of position vector by
+     velocity vector) and ``in plane'' (this direction is computed as a
+     cross product of ``down track'' by ``normal to plane'') -- of the
+     difference between the state vectors computed at that UTC time
+     defining segment boundary at which a discontinuity exists.
+
+     The pairs of segments and discontinuity times are determined using
+     an algorithm that emulates the standard SPK loading priority --
+     ``last loaded segment takes precedence''. Therefore, the
+     discontinuities summarized in the file are those which a user
+     reading file would actually see.
+
+     The difference components in the view coordinate frame were
+     computed for each discontinuity using the following algorithm:
+
+         --   A single state was computed from each pair of segment the
+              J2000 frame at the time of discontinuity.
+
+         --   For this pair of states, a position difference vector was
+              computed by subtracting the state computed from the
+              segment with higher priority from the state computed from
+              segment with lower priority. Then, a frame transformation
+              matrix rotating these difference vectors from J2000 to
+              the view coordinate frame defined by the state obtained
+              from the higher priority segment was computed, and the
+              position difference vector was rotated to the view frame
+              coordinates using this matrix.
+
+     The Galileo trajectory segment boundary discontinuities for this
+     file are:
+
+        #
+        # Summary of discontinuities at segment boundaries for
+        # SPK file gll_951120_021126_raj2007.bsp:
+        #
+        #  BOUNDARY TIME (UTC)   DOWNTRK INPLANE  NORMAL
+        #----------------------- ------- ------- -------
+        1996-05-31T23:58:57.815   0.002  -0.001   0.000
+        1996-08-05T23:58:57.816   0.003  -0.014   0.001
+        1996-09-10T23:58:57.817  -0.002   0.005  -0.000
+        1996-11-26T23:58:57.817   0.025   0.069   0.001
+        1997-03-14T23:58:57.814   0.152  -0.183  -0.001
+        1997-04-21T23:58:57.814   0.001   0.006  -0.001
+        1997-06-03T23:58:57.815   0.047  -0.123  -0.001
+        1997-08-08T23:58:56.816  -0.008   0.048   0.000
+        1997-10-19T23:58:56.817  -0.020   0.012  -0.001
+        1997-11-09T23:58:56.817   0.021   0.070   0.000
+        1999-06-04T23:58:55.815  -5.081   0.142 -12.740
+        2001-08-27T23:58:55.817  -0.232   0.299  -3.908
+        2002-01-22T23:58:55.815   1.356  -4.014  90.828
+
+
+End of comments.

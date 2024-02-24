@@ -1,0 +1,242 @@
+     DATA_OBJECT_TYPE = SPICE_I-KERNEL
+ 
+     MISSION_ID = 1
+ 
+     SPACECRAFT_NAME = GALILEO
+ 
+     SPACECRAFT_NUMBER = 77
+ 
+     INSTRUMENT_ID = 25
+ 
+     PROCESS_TIME = 1990-11-12T12:00:00
+ 
+ 
+EPD I-KERNEL
+===========================================================================
+ 
+     This I-kernel contains instrument pointing data for the energetic
+     particle detector (EPD) on board the Galileo Orbiter. The EPD
+     instrument consists of a solid state detector telescope (LEMMS) and a
+     foil type detector telescope (CMS). Both telescopes are mounted on a
+     rotating platform which, in turn, is mounted on an electronics
+     package. The LEMMS telescope has a 45 deg x 15 deg conical field of
+     view emanating from opposite ends and the CMS telescope has a 27 deg x
+     45 deg conical field of view emanating from opposite ends. The
+     platform rotates in cone in eight discrete steps. (These steps are
+     refered to as sectors.)
+ 
+ 
+References
+--------------------------------------------------------
+ 
+         1.   ``Preliminary I-kernel Specification,'' (NAIF document number
+              177.0), by Ian Underwood, 1/19/90.
+ 
+         2.   KERNEL ``Required Reading'' file.
+ 
+         3.   ``Galileo Orbiter Flight Equipment: Configuration'' in
+              GALILEO FUNCTIONAL REQUIREMENTS BOOK, JPL Document
+              GLL-3-180C, 28 APR 1989.
+ 
+         4.   ``EPD Specifications'', by Jim Willet, NAIF Document number
+              206.0
+ 
+ 
+Implementation Notes
+--------------------------------------------------------
+ 
+     This file is used by the SPICE system as follows: programs that make
+     use of the I-kernel must `load' the kernel, normally during program
+     initialization. Loading the kernel associates data items with their
+     names in a data structure called the `kernel pool'. The SPICELIB
+     routine LDPOOL loads a kernel file into the pool as shown below.
+ 
+                  CALL LDPOOL ( 'GLL25001.TI' )
+ 
+     In order for a program or subroutine to extract data from the pool,
+     the SPICELIB routine RTPOOL is used. See [2] for more details.
+ 
+ 
+Naming Conventions
+--------------------------------------------------------
+ 
+     All names referencing values in this I kernel start with the
+     characters `INS' followed by the NAIF EPD instrument number ('-77'
+     followed by the instrument subsystem reference number). This naming
+     scheme is standard for all I-kernel files and was instituted to
+     distinguish I-kernel data from other types of data that may also be
+     loaded in the kernel pool.
+ 
+     The remainder of the name is an underscore character, followed by the
+     unique name of the data item. For example, the maximum acceptance
+     angle for the Ja detector is specified by
+ 
+                INS-77025_JA_MAX_ACCEP_ANGLE
+ 
+     The upper bound on the length of the name of any data item is 32
+     characters.
+ 
+     If the same item is included in more then one file, or if the same
+     item appears more than once within a single file, the latest value
+     supersedes any earlier values.
+ 
+ 
+DATA
+--------------------------------------------------------
+ 
+ 
+        The CMS has five detectors:
+ 
+             1 - Ja
+             2 - Ka
+             3 - Jb
+             4 - Kb
+             5 - Kt
+ 
+        The LEMMS has eight detectors:
+ 
+             1 - A
+             2 - B
+             3 - C
+             4 - D
+             5 - E1
+             6 - E2
+             7 - F1
+             8 - F2
+ 
+        To find the direction of one of the above detectors at a known
+        sector one of two alignment tables (TABLE_1 and TABLE_2) is
+        used.   The direction is returned from an alignment table in the
+        form of a vector expressed relative to the spacecraft Xr, Yr,
+        and Zr axes.
+ 
+        On the CMS, the Ja & Ka and Jb & Kb detectors use TABLE_2 for
+        alignment and the Kt detector uses TABLE_1 for alignment.  On the
+        LEMMS all but the C & D detectors use TABLE_1 for alignment.  The
+        data item INS-77025_DETECTOR_ALIGNMENT contains this information.
+        If we let D be an array of the detectors listed in alphabetical
+        order, then the I'th element in INS-77025_DETECTOR_ALIGNMENT
+        tells us which alignment table should be used for the D(I)
+        detector.  See the table below.
+ 
+                                     Alignment  D - Detector names in
+                                     Table          alphabetical order
+                                     -------    --------
+        INS-77025_DETECTOR_ALIGNMENT =  1    --    A
+                                        1    --    B
+                                        2    --    C
+                                        2    --    D
+                                        1    --    E1
+                                        1    --    E2
+                                        1    --    F1
+                                        1    --    F2
+                                        2    --    JA
+                                        2    --    JB
+                                        2    --    KA
+                                        2    --    KB
+                                        1    --    KT
+ 
+        \begindata
+ 
+        INS-77025_DETECTOR_ALIGNMENT = ( 1,
+                                         1,
+                                         2,
+                                         2,
+                                         1,
+                                         1,
+                                         1,
+                                         1,
+                                         2,
+                                         2,
+                                         2,
+                                         2,
+                                         1 )
+ 
+        \begintext
+ 
+        Each of these detectors has an acceptance angle associated with it.
+        The array INS-77025_ACCEPTANCE_ANGLE contains these acceptance
+        angles.  If the array D is still the names of the detectors
+        listed in alphabetical order, then the I'th element in
+        INS-77025_ACCEPTANCE_ANGLE is the acceptance angle of the D(I)
+        detector.  The angles are in units of degrees off axis.
+ 
+        \begindata
+ 
+        INS-77025_ACCEPTANCE_ANGLE = (  15,
+                                        15,
+                                        45,
+                                        45,
+                                        15,
+                                        15,
+                                        15,
+                                        15,
+                                        11.5,
+                                        27,
+                                        11.5,
+                                        27,
+                                        18    )
+ 
+        \begintext
+ 
+        The alignment tables each contain eight pointing vectors
+        corresonding to the eight sectors.  The vectors are expressed
+        relative to the spacecraft +Xr, +Yr, and +Zr axes.
+ 
+        INS-77025_EPD_TABLE1 and INS-77025_EPD_TABLE2 are the names of the
+        two tables.  The first three values in an alignment table are the
+        Xr, Yr, and Zr components of the pointing vector for the first
+        sector.  The next three are the components for the second sector,
+        and so on.
+ 
+                                      X          Y           Z
+        \begindata
+ 
+        INS-77025_ALIGN_TABLE1 = (  -0.73,      0.00,      -0.68,
+                                    -0.03,      0.00,      -1.00,
+                                     0.48,      0.00,      -0.88,
+                                     0.86,      0.00,      -0.51,
+                                     1.00,      0.00,       0.00,
+                                     0.86,      0.00,       0.51,
+                                     0.48,      0.00,       0.88,
+                                    -0.03,      0.00,       1.00  )
+ 
+        INS-77025_ALIGN_TABLE2 = (   0.73,      0.00,       0.68,
+                                     0.03,      0.00,       1.00,
+                                    -0.48,      0.00,       0.88,
+                                    -0.86,      0.00,       0.51,
+                                    -1.00,      0.00,       0.00,
+                                    -0.86,      0.00,      -0.51,
+                                    -0.48,      0.00,      -0.88,
+                                     0.03,      0.00,      -1.00  )
+ 
+        \begintext
+ 
+        Date on which the above data was entered into this I-kernel.
+ 
+        \begindata
+ 
+        INS-77025_DATA_ENTRY_DATE    =  @09-NOV-1990
+ 
+        \begintext
+ 
+        Version
+ 
+        The version number is always positive and given in the form V.X.
+        V and X are incremented by following these rules:
+ 
+          --  V is incremented by 1 when there is a structural change to an
+              I-kernel.  A structural change to an instrument kernel would
+              be adding or deleting data items or changing the number of
+              values associated with an existing data item.  A structural
+              change would also be assigning different units to values or
+              changing the name of a data item.
+ 
+          --  X is incremented by 1 only if pre-existing values are
+              changed.
+ 
+        \begindata
+ 
+        INS-77025_VERSION = 1.0
+ 
+ 

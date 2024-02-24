@@ -1,0 +1,147 @@
+     DATA_OBJECT_TYPE = SPICE_I-KERNEL
+ 
+     MISSION_ID = 1
+ 
+     SPACECRAFT_NAME = GALILEO
+ 
+     SPACECRAFT_NUMBER = 77
+ 
+     INSTRUMENT_ID = 28
+ 
+     PROCESS_TIME = 1990-11-08T12:00:00
+ 
+ 
+HIC I-KERNEL
+===========================================================================
+ 
+     This I-kernel contains instrument pointing information for the Heavy
+     Ion Counter (HIC) instrument on board the Galileo spacecraft. The HIC
+     instrument consists of two basic detector telescopes labled Low Energy
+     Telescope E (LET E) and Low Energy Telescope B (LET B). An array of
+     solid-state detectors are contained in each telescope.
+ 
+ 
+References
+--------------------------------------------------------
+ 
+         1.   ``Preliminary I-kernel Specification,'' (NAIF document number
+              177.0), by Ian Underwood, 1/19/90.
+ 
+         2.   KERNEL ``Required Reading'' file.
+ 
+         3.   ``Galileo Orbiter Flight Equipment: Configuration'' in
+              GALILEO FUNCTIONAL REQUIREMENTS BOOK, JPL Document
+              GLL-3-180C, 28 APR 1989.
+ 
+         4.   ``Galileo Orbiter Flight Equipment: Energetic Particle
+              Detector Subsystem'' in GALILEO FUNCTIONAL REQUIREMENTS BOOK,
+              JPL Document GLL-4-2028A.
+ 
+         5.   ``Galileo HIC Specifications'', by Jim Willet, NAIF Document
+              number 208.0.
+ 
+ 
+Implementation Notes
+--------------------------------------------------------
+ 
+     This file is used by the SPICE system as follows: programs that make
+     use of the I-kernel must `load' the kernel, normally during program
+     initialization. Loading the kernel associates data items with their
+     names in a data structure called the `kernel pool'. The SPICELIB
+     routine LDPOOL loads a kernel file into the pool as shown below.
+ 
+                  CALL LDPOOL ( 'GLL28001.TI' )
+ 
+     In order for a program or subroutine to extract data from the pool,
+     the SPICELIB routine RTPOOL is used. See [2] for more details.
+ 
+ 
+Naming Conventions
+--------------------------------------------------------
+ 
+     All names referencing values in this I kernel start with the
+     characters `INS' followed by the NAIF HIC instrument number ('-77'
+     followed by the instrument subsystem reference number). This naming
+     scheme is standard for all I-kernel files and was instituted to
+     distinguish I-kernel data from other types of data that may also be
+     loaded in the kernel pool.
+ 
+     The remainder of the name is an underscore character, followed by the
+     unique name of the data item. For example, the maximum acceptance
+     angle for the LET B telescope is specified by
+ 
+                INS-77028_MAX_ACCEP_ANG_B
+ 
+     The upper bound on the length of the name of any data item is 32
+     characters.
+ 
+     If the same item is included in more then one file, or if the same
+     item appears more than once within a single file, the latest value
+     supersedes any earlier values.
+ 
+ 
+DATA
+--------------------------------------------------------
+ 
+ 
+        Both of the telescopes are single ended.  The boresight vectors
+        for the two telescopes are given with respect to the spacecraft
+        rotor Xr, Yr, and Zr axes.
+ 
+        \begindata
+ 
+        INS-77028_LET_B_BORESIGHT = ( 0.68, 0.68, -0.26 )
+        INS-77028_LET_E_BORESIGHT = ( 0.68, 0.68, -0.26 )
+ 
+        \begintext
+ 
+        The LET B telescope contains 4 detectors:  LB1, LB2, LB3, and LB4.
+        The geometry of LB2 and LB3 limit the maximum acceptance angle to
+        25 degrees off axis.
+ 
+        \begindata
+ 
+        INS-77028_LET_B_ACCEP_ANG =  ( 25.0 )
+ 
+        \begintext
+ 
+        The LET E telescope contains five detectors:  LE1, LE2, LE3, LE4,
+        and LE 5.  The LE1 and LE2 detectors define a 50 degree viewing
+        cone (maximum acceptance angle of 25 degrees off axis) while the
+        LE2 and LE5 define a 92 degrees viewing cone (maximum acceptance
+        angle of 46 degrees off axis).
+ 
+        \begindata
+ 
+        INS-77028_LET_E_ACCEP_ANG =  ( 25.0, 46.0 )
+ 
+        \begintext
+ 
+        Date on which the above data was entered into this I-kernel.
+ 
+        \begindata
+ 
+        INS-77028_DATA_ENTRY_DATE =  ( @19-OCT-1990 )
+ 
+        \begintext
+ 
+        Version
+ 
+        The version number is always positive and given in the form V.X.
+        V and X are incremented by following these rules:
+ 
+          --  V is incremented by 1 when there is a structural change to an
+              I-kernel.  A structural change to an instrument kernel would
+              be adding or deleting data items or changing the number of
+              values associated with an existing data item.  A structural
+              change would also be assigning different units to values or
+              changing the name of a data item.
+ 
+          --  X is incremented by 1 only if pre-existing values are
+              changed.
+ 
+        \begindata
+ 
+        INS-77028_VERSION         = ( 1.0 )
+ 
+ 
